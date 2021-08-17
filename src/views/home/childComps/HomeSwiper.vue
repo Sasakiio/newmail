@@ -1,38 +1,46 @@
 <template>
-	<div class="w">
-		<swiper>
-			<swiper-item v-for="(value, index) in banners" :key="value.title">
-				<a :href="value.link">
-					<img :src="value.image" @load="imgLoad"/>
-				</a>
-			</swiper-item>
-		</swiper>
-	</div>
+<swiper>
+   <swiper-item v-for="(item,index) in banners" :key='index'>
+     <a :href="item.link">
+     <img :src="item.image" alt="" @load="imageLoad">
+	 </a>
+   </swiper-item>
+   </swiper>
 </template>
 
 <script>
-	import {Swiper, SwiperItem} from 'components/common/swiper'
-	
-	export default {
-		props: {
-			banners: {
-				type: Array,
-				default() {
-					return []
-				}
-			}
-		},
-		components:{
+import {Swiper,SwiperItem} from 'components/common/swiper/index.js'
+
+export default {
+    name:"HomeSwiper",
+    props: {
+        banners: {
+            type: Array,
+            default() {
+                return []
+            }
+        }
+    },
+    data() {
+        return {
+            isLoad: false
+        }
+    },
+    components: {
 			Swiper,
 			SwiperItem
 		},
-		methods: {
-			imgLoad() {
-				this.$emit('imgLoad')
-			}
-		}
-	}
+        methods: {
+            imageLoad() {
+                if (!this.isLoad) {
+                    this.$emit('swiperImageLoad')
+                    this.isLoad = true
+                }
+            }
+        }
+}
 </script>
 
-<style>
+<style scoped>
+
 </style>

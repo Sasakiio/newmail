@@ -1,50 +1,116 @@
 <template>
-	<div class="profile">
-		<nav-bar class="nav-bar">
-			<div slot="center">我的信息</div>
-		</nav-bar>
-		<scroll class="content" ref="scroll">
-			<login />
-			<money />
-			<profile-list />
-		</scroll>
-	</div>
+  <div class="profile">
+    <nav-bar class="nav-bar">
+      <template #center>我的信息</template>
+    </nav-bar>
+
+    <user-info></user-info>
+
+    <section class="account">
+      <div class="account-item">
+        <div class="number">
+          <span class="balance">0.00</span>元
+        </div>
+        <div class="account-info">余额</div>
+      </div>
+      <div class="account-item">
+        <div class="number">
+          <span class="balance">0</span>个
+        </div>
+        <div class="account-info">优惠</div>
+      </div>
+      <div class="account-item">
+        <div class="number">
+          <span class="balance">0</span>分
+        </div>
+        <div class="account-info">积分</div>
+      </div>
+    </section>
+
+    <list-view :list-data="orderList" class="order-list"></list-view>
+    <list-view :list-data="serviceList" class="service-list"></list-view>
+  </div>
 </template>
 
 <script>
-	import NavBar from 'components/common/navbar/NavBar.vue'
-	import scroll from 'components/common/scroll/Scroll.vue'
-	import Login from './childComps/Login.vue'
-	import Money from './childComps/Money.vue'
-	import ProfileList from './childComps/ProfileList.vue'
+  import UserInfo from "./childComps/UserInfo";
+  import ListView from "./childComps/ListView";
+  import NavBar from "components/common/navbar/NavBar";
+	
 	export default {
-		components: {
-			NavBar,
-			scroll,
-			Login,
-			Money,
-			ProfileList
-		},
-		activated() {
-			this.$refs.scroll.refresh();
-		}
+		name: "Profile",
+    components: {
+		  NavBar,
+      UserInfo,
+      ListView,
+    },
+    data: function () {
+		  return {
+		    orderList: [
+          {src: require('assets/img/profile/message.svg'), info: '消息'},
+          {src: require('assets/img/profile/coins.svg'), info: '积分商城'},
+          {src: require('assets/img/profile/crown.svg'), info: '会员卡'},
+        ],
+        serviceList: [
+          {src:require('assets/img/profile/cart.svg'), info: '购物车'},
+          {src:require('assets/img/profile/bag.svg'), info: '下载购物APP'},
+        ]
+      }
+    },
+    
 	}
 </script>
 
-<style scoped="scoped">
-	.profile {
-		height: calc(100vh - 44px - 49px);
-	}
+<style scoped>
+  .profile {
+    background-color: #eee;
+  }
 
-	.nav-bar {
-		background-color: #EE7187;
-		color: #fff;
-	}
+  .nav-bar {
+    background-color: var(--color-tint);
+    color: #fff;
+  }
+  .account {
+    display: flex;
+  }
 
-	.content {
-		height: 100%;
-		overflow: hidden;
-	}
+  .account-item {
+    width: 100%;
+    background-color: #eee;
+    margin-right: 1px;
+    text-align: center;
+  }
 
-	
+  .account-item:last-of-type {
+    margin-right: 0;
+  }
+
+  .account-item {
+    color: black;
+    font-size: 13px;
+    padding: 18px;
+  }
+
+  .account-item .balance {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-high-text);
+  }
+
+  .account-info {
+    margin-top: 6px;
+  }
+
+  .order-list, .service-list {
+    margin-top: 12px;
+  }
+
+  .cart>div img {
+    font-size: 24px;
+    width: 18px;
+		vertical-align: middle;
+		margin-right: 6px;
+		transform: translateY(-1px);
+  }
 </style>
+

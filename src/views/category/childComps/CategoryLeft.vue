@@ -1,7 +1,9 @@
 <template>
 	<div class="cate-left">
 		<ul>
-			<li v-for="(item, index) in category[0]" :key="item.maitKey" @click="btnClick(index, item.miniWallkey, item.maitKey)" :class="{current: index === currentIndex}">{{item.title}}</li>
+			<li v-for="(item, index) in category[0]" 
+			:key="item.maitKey" @click="btnClick(index, item.miniWallkey, item.maitKey)" 
+			:class="{current: index === currentIndex}">{{item.title}}</li>
 		</ul>
 	</div>
 </template>
@@ -49,7 +51,7 @@
 		padding: calc(100% / 16) 0;
 	}
 	.current {
-		color: #EC658A;
+		color: #E93063;
 		background-color: #fff;
 		border-left: 2px solid #E93063;
 	}

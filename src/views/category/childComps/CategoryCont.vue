@@ -45,12 +45,12 @@
 		margin: 10px;
 		color: #333;
 		
-		
 	}
 
 	.cate-cont img {
 		width: 65px;
 	}
+
 	.cate-cont span {
 		display: block;
 	}
