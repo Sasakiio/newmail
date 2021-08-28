@@ -32,13 +32,16 @@ const routes = [
 	},
 	{
 		path: '/detail/:iid',
+		name: 'Detail',
 		component: Detail
 	}
 ]
 
 const router = new Router({
 	routes,
-	mode: 'history'
+	mode: 'hash'
 })
 
 export default router
+
+

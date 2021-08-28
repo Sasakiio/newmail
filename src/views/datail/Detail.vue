@@ -32,7 +32,7 @@ import GoodsList from 'components/content/goods/GoodsList'
 import {getDetail, Goods, Shop, GoodsParam, getRecommend} from "network/detail";
 import {debounce} from "common/utils";
 import {mixinBackTop} from "common/mixin";
-import {BACK_POSTION} from "common/const";
+import {BACK_POSTION} from "common/const.js";
 
 export default {
     name: "Detail",
@@ -66,7 +66,7 @@ export default {
     },
     created() {
         //保存传入的iid
-        this.iid = this.$route.params.iid
+        this.iid = this.$route.params.iid;
 
         //根据iid请求详情数据
         getDetail(this.iid).then(res => {

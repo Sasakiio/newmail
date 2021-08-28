@@ -21,3 +21,5 @@ const store = new Vuex.Store({
 
 //挂载Vue实例上
 export default store
+
+
